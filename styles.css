@@ -26,12 +26,12 @@
   border-radius: 15px;
 }
 
-#btn-types {
+.btn-types {
   color: white;
   border: none;
 }
 
-#btn-types:hover {
+.btn-types:hover {
   cursor: default;
 }
 
@@ -49,4 +49,5 @@
   box-shadow: 0px 0px 10px 5px
     color-mix(in srgb, var(--type-color) 100%, transparent);
   z-index: 1;
+  color: white;
 }

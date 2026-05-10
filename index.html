@@ -8,29 +8,31 @@
       href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="./styles.css" />
+    <script src="./helper.js" defer></script>
     <script src="./templates.js" defer></script>
     <script src="./scripts.js" defer></script>
+
     <title>Pokedex</title>
     <link rel="icon" type="image/x-icon" href="./assets/favicon/favicon.ico" />
   </head>
   <body
-    class="container d-flex flex-column align-items-center justify-content-center"
+    class="container d-flex flex-column align-items-center justify-content-center p-0 my-0"
   >
-    <header class="container mb-5 p-0">
-      <nav class="navbar bg-body-tertiary p-2">
+    <header class="container m-3 p-0">
+      <nav class="navbar bg-body-tertiary p-3 m-0">
         <div
-          class="container-fluid flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2"
+          class="container-fluid flex-column flex-md-row align-items-center gap-2"
         >
-          <a class="navbar-brand mx-auto mx-sm-0">
+          <a class="navbar-brand">
             <img
               src="./assets/img/pokemon-logo.svg"
-              alt="Bootstrap"
+              alt="Pokemon Logo"
               height="70"
             />
           </a>
           <form class="d-flex" role="search">
             <input
-              class="form-control me-2"
+              class="form-control me-3"
               type="search"
               placeholder="Search for Pokemon"
               aria-label="Search for Pokemon"
@@ -42,8 +44,8 @@
         </div>
       </nav>
     </header>
-    <main class="mb-4">
-      <div id="pokemonContainer" class="row mb-0"></div>
+    <main class="mb-3 my-0 py-0">
+      <div id="pokemonContainer" class="row"></div>
     </main>
     <button class="btn btn-outline-warning mb-4" id="loadMoreButton">
       Load More
