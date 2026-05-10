@@ -1,7 +1,7 @@
 :root {
   --secondary-color: #ffcb02;
   --accent-color: #3765ae;
-  --tertiary-color: #b4b7bb;
+  --tertiary-color: hsl(214, 5%, 72%);
 }
 
 .btn {
@@ -24,4 +24,29 @@
 
 .navbar {
   border-radius: 15px;
+}
+
+#btn-types {
+  color: white;
+  border: none;
+}
+
+#btn-types:hover {
+  cursor: default;
+}
+
+.pokemon-card {
+  border: none;
+  border-radius: 15px;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  box-shadow: none;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px 5px
+    color-mix(in srgb, var(--type-color) 100%, transparent);
+  z-index: 1;
 }

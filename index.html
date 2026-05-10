@@ -8,15 +8,20 @@
       href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./scrypts.js" defer></script>
+    <script src="./templates.js" defer></script>
+    <script src="./scripts.js" defer></script>
     <title>Pokedex</title>
     <link rel="icon" type="image/x-icon" href="./assets/favicon/favicon.ico" />
   </head>
-  <body class="container">
-    <header class="mb-5">
+  <body
+    class="container d-flex flex-column align-items-center justify-content-center"
+  >
+    <header class="container mb-5 p-0">
       <nav class="navbar bg-body-tertiary p-2">
-        <div class="container-fluid">
-          <a class="navbar-brand">
+        <div
+          class="container-fluid flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2"
+        >
+          <a class="navbar-brand mx-auto mx-sm-0">
             <img
               src="./assets/img/pokemon-logo.svg"
               alt="Bootstrap"
@@ -37,16 +42,11 @@
         </div>
       </nav>
     </header>
-    <main>
-      <div class="card" style="width: 18rem">
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card’s content.
-          </p>
-        </div>
-      </div>
+    <main class="mb-4">
+      <div id="pokemonContainer" class="row mb-0"></div>
     </main>
+    <button class="btn btn-outline-warning mb-4" id="loadMoreButton">
+      Load More
+    </button>
   </body>
 </html>
