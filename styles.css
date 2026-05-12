@@ -2,6 +2,10 @@
   --secondary-color: #ffcb02;
   --accent-color: #3765ae;
   --tertiary-color: hsl(214, 5%, 72%);
+  --poke-blue-dark: #1e3f78;
+  --poke-blue-mid: #2e5ca1;
+  --poke-cream: #fff3bc;
+  --poke-red: #ee4242;
 }
 
 .btn {
@@ -13,26 +17,161 @@
   border-color: var(--secondary-color);
 }
 
-.form-control:focus {
-  box-shadow: 0px 0px 5px 0px inset var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-}
-.form-control:hover {
-  box-shadow: 0px 0px 5px 0px inset var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-}
-
 .navbar {
   border-radius: 15px;
+}
+
+.pokemon-nav-shell {
+  border: 3px solid var(--accent-color);
+  border-radius: 20px;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.24),
+      transparent 45%
+    ),
+    linear-gradient(140deg, var(--poke-blue-dark) 0%, var(--poke-blue-mid) 100%);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.32),
+    inset 0 0 0 2px rgba(255, 203, 2, 0.34);
+}
+
+.pokemon-brand-icon {
+  border-radius: 50%;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0 0 0 2px var(--accent-color);
+  background: white;
+}
+
+.pokemon-search {
+  width: min(100%, 520px);
+  gap: 0.65rem;
+}
+
+.pokemon-search-input {
+  border: 3px solid var(--accent-color);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffe27a 0%, var(--secondary-color) 100%);
+  color: #1f3d72;
+  font-weight: 800;
+  box-shadow:
+    0 6px 0 var(--poke-blue-dark),
+    0 10px 18px rgba(0, 0, 0, 0.24);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.pokemon-search-input::placeholder {
+  color: #1f3d72;
+  opacity: 0.8;
+  font-weight: 700;
+}
+
+.pokemon-search-input:focus,
+.pokemon-search-input:hover {
+  outline: none;
+  color: #1f3d72;
+  transform: translateY(-2px);
+  filter: saturate(1.1);
+  box-shadow:
+    0 8px 0 var(--poke-blue-dark),
+    0 14px 22px rgba(0, 0, 0, 0.28);
+}
+
+.pokemon-search-input:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 3px 0 var(--poke-blue-dark),
+    0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn.pokemon-action-btn {
+  position: relative;
+  border: 3px solid var(--accent-color);
+  background: linear-gradient(135deg, #ffe27a 0%, var(--secondary-color) 100%);
+  color: #1f3d72;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.65rem 1.8rem 0.65rem 2.8rem;
+  border-radius: 999px;
+  box-shadow:
+    0 6px 0 var(--poke-blue-dark),
+    0 10px 18px rgba(0, 0, 0, 0.24);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.btn.pokemon-action-btn::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.05rem;
+  height: 1.05rem;
+  background-image: url("./assets/favicon/favicon.ico");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn.pokemon-action-btn:hover {
+  color: #1f3d72;
+  transform: translateY(-2px);
+  filter: saturate(1.1);
+  box-shadow:
+    0 8px 0 var(--poke-blue-dark),
+    0 14px 22px rgba(0, 0, 0, 0.28);
+}
+
+.btn.pokemon-action-btn:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 3px 0 var(--poke-blue-dark),
+    0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn.pokemon-action-btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--secondary-color) 60%, white);
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .pokemon-nav-shell {
+    border-radius: 16px;
+  }
+
+  .pokemon-brand {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .pokemon-brand img:last-child {
+    height: 56px;
+  }
+
+  .pokemon-search {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .pokemon-search-input {
+    width: 100%;
+  }
+
+  .btn.pokemon-action-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .btn-types {
   color: white;
   border: none;
-}
-
-.btn-types:hover {
-  cursor: default;
 }
 
 .pokemon-card {
@@ -50,4 +189,41 @@
     color-mix(in srgb, var(--type-color) 100%, transparent);
   z-index: 1;
   color: white;
+}
+
+.loader {
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+.loader img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 21, 36, 0.48);
+  backdrop-filter: blur(2px);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.clickable {
+  cursor: pointer;
 }
