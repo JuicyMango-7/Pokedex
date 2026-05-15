@@ -267,7 +267,6 @@ html {
 .pokemon-detail-modal {
   --bs-modal-width: min(96vw, 560px);
   --pokemon-detail-max-height: calc(100dvh - 2rem);
-  overflow-y: hidden;
 }
 
 .pokemon-detail-modal.show {
@@ -283,7 +282,7 @@ html {
 
 .pokemon-detail-modal .pokemon-detail-modal-content {
   max-height: var(--pokemon-detail-max-height);
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 @media (max-width: 576px) {
