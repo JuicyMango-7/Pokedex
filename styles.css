@@ -73,6 +73,13 @@ html {
     filter 0.15s ease;
 }
 
+.pokemon-search-input::-webkit-search-cancel-button {
+  width: 16px;
+  height: 16px;
+  opacity: 1;
+  filter: invert(100%);
+}
+
 .pokemon-search-input::placeholder {
   color: #1f3d72;
   opacity: 0.8;
@@ -242,4 +249,55 @@ html {
 
 .clickable {
   cursor: pointer;
+}
+
+.search-empty-state {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 2.5rem 1.5rem;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.pokemon-detail-modal {
+  --bs-modal-width: min(96vw, 560px);
+  --pokemon-detail-max-height: calc(100dvh - 2rem);
+  overflow-y: hidden;
+}
+
+.pokemon-detail-modal.show {
+  display: flex !important;
+  align-items: center;
+}
+
+.pokemon-detail-modal .pokemon-detail-modal-dialog {
+  width: 100%;
+  margin: 1rem auto;
+  max-height: var(--pokemon-detail-max-height);
+}
+
+.pokemon-detail-modal .pokemon-detail-modal-content {
+  max-height: var(--pokemon-detail-max-height);
+  overflow-y: hidden;
+}
+
+@media (max-width: 576px) {
+  .pokemon-detail-modal {
+    --pokemon-detail-max-height: calc(100dvh - 1rem);
+  }
+
+  .pokemon-detail-modal .pokemon-detail-modal-dialog {
+    margin: 0.5rem auto;
+  }
+}
+
+@supports not (height: 100dvh) {
+  .pokemon-detail-modal {
+    --pokemon-detail-max-height: calc(100vh - 2rem);
+  }
 }

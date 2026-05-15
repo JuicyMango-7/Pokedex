@@ -35,6 +35,14 @@ function loadingSpinnerTemplate() {
   `;
 }
 
+function emptySearchTemplate() {
+  return `
+    <div class="col-12">
+      <div class="search-empty-state">Nothing here</div>
+    </div>
+  `;
+}
+
 function showPokemonDetailsTemplate(data) {
   const name = capitalizeFirstLetter(data.name);
   const number = formatPokemonNumber(data.id);
@@ -70,15 +78,15 @@ function showPokemonDetailsTemplate(data) {
 
   return `
     <div
-      class="modal fade px-2 px-sm-0"
+      class="modal fade px-2 px-sm-0 m-sm-0 pokemon-detail-modal"
       id="pokemonDetailModal"
       tabindex="-1"
       aria-hidden="true"
       style="--type-color: ${getColor(data.types[0].type.name)};"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered pokemon-detail-modal-dialog">
         <div
-          class="modal-content text-white"
+          class="modal-content text-white pokemon-detail-modal-content"
           style="background: radial-gradient(circle, var(--type-color) 15%, rgba(34, 37, 41, 1) 100%); position: relative;"
         >
           <button
@@ -88,15 +96,15 @@ function showPokemonDetailsTemplate(data) {
             aria-label="Close"
             style="position: absolute; top: 1rem; right: 1rem; z-index: 10;"
           ></button>
-          <div class="modal-header border-0 d-flex flex-column align-items-start pt-4">
+          <div class="modal-header border-0 d-flex flex-column align-items-start pt-4 mb-0 pb-0">
             <p class="text-muted mb-1">Nr. ${number}</p>
             <h1 class="modal-title fs-4 fw-bold">${name}</h1>
             <div>${types}</div>
           </div>
-          <div class="modal-body text-center py-2">
+          <div class="modal-body text-center p-0 m-0">
             <img src="${image}" alt="${name}" class="img-fluid" style="max-height: 250px;" />
           </div>
-          <div class="modal-footer border-0 d-flex flex-column align-items-start pb-4" style="width: 100%; padding-left: 1.5rem; padding-right: 1.5rem;">
+          <div class="modal-footer border-0 d-flex flex-column align-items-start pb-4 pt-0 mt-0" style="width: 100%; padding-left: 1.5rem; padding-right: 1.5rem;">
           
             <h5 class="mb-2" style="width: 100%;">Base Stats</h5>
             <ul class="list-unstyled mb-3" style="width: 100%;">
@@ -115,7 +123,7 @@ function showPokemonDetailsTemplate(data) {
                 type="button"
                 class="btn btn-outline-light"
                 onclick="navigatePokemonDetails(${data.id}, -1)"
-                ${data.id === 1 ? "disabled" : ""}
+                ${isPokemonDetailNavigationDisabled(data.id, -1) ? "disabled" : ""}
               >
                 &larr; Previous
               </button>
@@ -123,6 +131,7 @@ function showPokemonDetailsTemplate(data) {
                 type="button"
                 class="btn btn-outline-light"
                 onclick="navigatePokemonDetails(${data.id}, 1)"
+                ${isPokemonDetailNavigationDisabled(data.id, 1) ? "disabled" : ""}
               >
                 Next &rarr;
               </button>
