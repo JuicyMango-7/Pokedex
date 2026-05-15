@@ -37,19 +37,28 @@
               height="70"
             />
           </a>
-          <form class="d-flex pokemon-search" role="search">
+          <form
+            class="d-flex pokemon-search"
+            role="search"
+            onsubmit="
+              event.preventDefault();
+              searchPokemon(this.querySelector('input').value);
+            "
+          >
             <input
+              id="pokemonSearchInput"
               class="form-control pokemon-search-input"
               type="search"
               placeholder="Search for Pokemon"
               aria-label="Search for Pokemon"
+              oninput="if (!this.value) resetSearch();"
             />
             <button class="btn pokemon-action-btn" type="submit">Search</button>
           </form>
         </div>
       </nav>
     </header>
-    <main class="mb-3 my-0 py-0">
+    <main class="w-100 mb-3 my-0 py-0">
       <div id="pokemonContainer" class="row"></div>
     </main>
     <button

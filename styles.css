@@ -8,6 +8,16 @@
   --poke-red: #ee4242;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
+@supports not (scrollbar-gutter: stable) {
+  html {
+    overflow-y: scroll;
+  }
+}
+
 .btn {
   border-color: var(--secondary-color);
   color: var(--secondary-color);
@@ -175,12 +185,10 @@
 }
 
 .pokemon-card {
-  border: none;
   border-radius: 15px;
   transition:
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
-  box-shadow: none;
 }
 
 .pokemon-card:hover {
@@ -189,6 +197,14 @@
     color-mix(in srgb, var(--type-color) 100%, transparent);
   z-index: 1;
   color: white;
+  border: none;
+}
+
+@media (max-width: 576px) {
+  .pokemon-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 .loader {
