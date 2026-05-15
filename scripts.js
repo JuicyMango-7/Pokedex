@@ -301,7 +301,17 @@ function resetModalBodyStyles() {
 async function fetchAllPokemonList() {
   const response = await fetch(`${URL}?limit=100000`);
   const data = await response.json();
-  allPokemonList = data.results.map((p, i) => ({ name: p.name, id: i + 1 }));
+  allPokemonList = data.results
+    .map((pokemon) => ({
+      name: pokemon.name,
+      id: extractPokemonIdFromUrl(pokemon.url),
+    }))
+    .filter((pokemon) => pokemon.id !== null);
+}
+
+function extractPokemonIdFromUrl(url) {
+  const match = url.match(/\/(\d+)\/?$/);
+  return match ? Number(match[1]) : null;
 }
 
 async function searchPokemon(query) {
@@ -349,23 +359,26 @@ function getSearchMatches(query) {
   const normalizedQuery = query.toLowerCase();
 
   return allPokemonList
-    .filter(
-      (pokemon) =>
-        pokemon.name.includes(normalizedQuery) ||
-        String(pokemon.id).includes(normalizedQuery),
-    )
+    .filter((pokemon) => matchesSearchQuery(pokemon, normalizedQuery, query))
     .slice(0, 20);
+}
+
+function matchesSearchQuery(pokemon, normalizedQuery, query) {
+  if (isNumericSearch(query)) return pokemon.id === Number(query);
+  return pokemon.name.includes(normalizedQuery);
 }
 
 async function renderSearchResults(matches, searchToken) {
   if (isStaleSearchToken(searchToken)) return false;
-  setSearchNavigationState(matches.map((match) => match.id));
   hideLoadMoreButton();
   clearPokemonContainer();
   if (matches.length === 0) return true;
   const pokemonData = await fetchPokemonDataForMatches(matches);
+  const validPokemonData = pokemonData.filter(Boolean);
   if (isStaleSearchToken(searchToken)) return false;
-  renderPokemonCards(pokemonData);
+  setSearchNavigationState(validPokemonData.map((pokemon) => pokemon.id));
+  if (validPokemonData.length === 0) return true;
+  renderPokemonCards(validPokemonData);
   return false;
 }
 
